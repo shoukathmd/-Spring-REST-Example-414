@@ -2,6 +2,23 @@
 genPolicy: "Create"
 openAPISpec: "http://18.144.38.115:8090/v2/api-docs"
 generators:
+- type: "auth_invalid"
+  assertions:
+  - "@StatusCode != 200"
+  severity: "Critical"
+  database: null
+  inactive: true
+  autoCodeGeneratorMatches: null
+- type: "ddos"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: false
+  autoCodeGeneratorMatches: null
 - type: "log_Forging"
   assertions:
   - "@StatusCode != 200"
@@ -10,28 +27,11 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: false
+  inactive: true
   autoCodeGeneratorMatches: null
 - type: "anonymous_invalid"
   assertions:
   - "@StatusCode != 200"
-  severity: "Critical"
-  database: null
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "auth_invalid"
-  assertions:
-  - "@StatusCode != 200"
-  severity: "Critical"
-  database: null
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "ddos"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
   severity: "Critical"
   database: null
   inactive: true
@@ -44,7 +44,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: false
+  inactive: true
   autoCodeGeneratorMatches: null
 - type: "sql_injection"
   assertions:
@@ -83,7 +83,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "null_value"
   assertions:
@@ -93,7 +93,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "empty_value"
   assertions:
@@ -103,7 +103,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "create"
   assertions:
@@ -113,5 +113,5 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
