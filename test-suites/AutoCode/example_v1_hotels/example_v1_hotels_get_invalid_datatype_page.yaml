@@ -1,23 +1,26 @@
 ---
 parent: "example_v1_hotels"
-name: "example_v1_hotels_get_anonymous_invalid"
+name: "example_v1_hotels_get_invalid_datatype_page"
 description: "The list is paginated. You can provide a page number (default 0) and\
   \ a page size (default 100)"
 type: "SUITE"
-endpoint: "/example/v1/hotels"
+endpoint: "/example/v1/hotels?page=I6C5Oq"
 method: "GET"
-auth: "Anonymous"
+auth: "Default"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"
 testCases: []
 assertions:
 - "@StatusCode != 200"
+- "@StatusCode != 401"
+- "@StatusCode != 404"
+- "@StatusCode != 500"
 tags:
 - "V1"
 authors:
 - "FX Bot"
-category: "UnSecured"
+category: "Negative"
 severity: "Critical"
 inactive: false
 policies: null
