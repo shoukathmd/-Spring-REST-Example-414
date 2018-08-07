@@ -1,29 +1,22 @@
 ---
 parent: "example_v1_hotels"
-name: "example_v1_hotels_post_rbac_create_abstract"
+name: "example_v1_hotels_post_auth_invalid"
 description: "Returns the URL of the new resource in the Location header."
-type: "ABSTRACT"
+type: "SUITE"
 endpoint: "/example/v1/hotels"
 method: "POST"
-auth: ""
+auth: "INVALID_AUTH"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"
-testCases:
-- id: 1
-  body: "{\n  'city' : null,\n  'description' : null,\n  'id' : null,\n  'name' :\
-    \ null,\n  'rating' : null\n}"
-  inactive: false
+testCases: []
 assertions:
 - "@StatusCode != 200"
-- "@StatusCode != 401"
-- "@StatusCode != 404"
-- "@StatusCode != 500"
 tags:
 - "V1"
 authors:
 - "FX Bot"
-category: "Functional"
+category: "UnSecured"
 severity: "Critical"
 inactive: false
 policies: null

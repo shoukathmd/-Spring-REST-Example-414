@@ -1,10 +1,9 @@
 ---
-parent: "example_v1_hotels"
-name: "example_v1_hotels_get_invalid_datatype_size"
-description: "The list is paginated. You can provide a page number (default 0) and\
-  \ a page size (default 100)"
+parent: "example_v1_hotels_id"
+name: "example_v1_hotels_id_get_path_param_null_value_id"
+description: "You have to provide a valid hotel ID."
 type: "SUITE"
-endpoint: "/example/v1/hotels?size=a64HFt"
+endpoint: "/example/v1/hotels/null"
 method: "GET"
 auth: "Default"
 headers:

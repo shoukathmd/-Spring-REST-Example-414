@@ -1,24 +1,23 @@
 ---
-parent: "example_v1_hotels_id"
-name: "example_v1_hotels_id_delete_rbac_delete_abstract"
+parent: "example_v1_hotels_@random"
+name: "example_v1_hotels_@random_delete_auth_invalid"
 description: "You have to provide a valid hotel ID in the URL. Once deleted the resource\
   \ can not be recovered."
-type: "ABSTRACT"
-endpoint: "/example/v1/hotels/{{@example_v1_hotels_post_rbac_create_abstract_Response.id}}"
+type: "SUITE"
+endpoint: "/example/v1/hotels/{{@Random}}"
 method: "DELETE"
-auth: ""
+auth: "INVALID_AUTH"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"
 testCases: []
 assertions:
 - "@StatusCode != 200"
-- "@StatusCode == 200"
 tags:
 - "V1"
 authors:
 - "FX Bot"
-category: "Functional"
-severity: "Major"
+category: "UnSecured"
+severity: "Critical"
 inactive: false
 policies: null

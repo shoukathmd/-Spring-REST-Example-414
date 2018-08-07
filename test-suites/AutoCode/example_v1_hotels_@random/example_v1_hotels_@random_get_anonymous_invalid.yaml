@@ -1,25 +1,22 @@
 ---
-parent: "example_v1_hotels_id"
-name: "example_v1_hotels_id_get_path_param_invalid_datatype_id"
+parent: "example_v1_hotels_@random"
+name: "example_v1_hotels_@random_get_anonymous_invalid"
 description: "You have to provide a valid hotel ID."
 type: "SUITE"
-endpoint: "/example/v1/hotels/iE7wsu"
+endpoint: "/example/v1/hotels/{{@Random}}"
 method: "GET"
-auth: "Default"
+auth: "Anonymous"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"
 testCases: []
 assertions:
 - "@StatusCode != 200"
-- "@StatusCode != 401"
-- "@StatusCode != 404"
-- "@StatusCode != 500"
 tags:
 - "V1"
 authors:
 - "FX Bot"
-category: "Negative"
+category: "UnSecured"
 severity: "Critical"
 inactive: false
 policies: null
