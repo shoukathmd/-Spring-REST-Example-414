@@ -7,7 +7,7 @@ generators:
   - "@StatusCode != 200"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "ddos"
   assertions:
@@ -17,7 +17,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: false
+  inactive: true
   autoCodeGeneratorMatches: null
 - type: "log_Forging"
   assertions:
@@ -27,11 +27,40 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "anonymous_invalid"
   assertions:
   - "@StatusCode != 200"
+  severity: "Critical"
+  database: null
+  inactive: false
+  autoCodeGeneratorMatches: null
+- type: "sql_injection"
+  assertions:
+  - "@ResponseTime < 7000"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database:
+    name: "MySQL"
+    version: "5.7"
+  inactive: true
+  autoCodeGeneratorMatches: null
+- type: "rbac"
+  assertions:
+  - "@StatusCode == 403"
+  severity: "Critical"
+  database: null
+  inactive: true
+  autoCodeGeneratorMatches: null
+- type: "invalid_datatype"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
   severity: "Critical"
   database: null
   inactive: true
@@ -45,35 +74,6 @@ generators:
   severity: "Critical"
   database: null
   inactive: true
-  autoCodeGeneratorMatches: null
-- type: "sql_injection"
-  assertions:
-  - "@ResponseTime < 7000"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  severity: "Critical"
-  database:
-    name: "MySQL"
-    version: "5.7"
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "rbac"
-  assertions:
-  - "@StatusCode == 403"
-  severity: "Critical"
-  database: null
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "invalid_datatype"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  severity: "Critical"
-  database: null
-  inactive: false
   autoCodeGeneratorMatches: null
 - type: "special_chars "
   assertions:
