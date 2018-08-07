@@ -56,7 +56,7 @@ generators:
   - "@StatusCode != 500"
   severity: "Critical"
   database: null
-  inactive: true
+  inactive: false
   autoCodeGeneratorMatches: null
 - type: "rbac"
   assertions:
