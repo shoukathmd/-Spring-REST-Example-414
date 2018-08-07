@@ -1,10 +1,10 @@
 ---
 parent: "example_v1_hotels"
-name: "example_v1_hotels_get_invalid_datatype_page"
+name: "example_v1_hotels_get_path_param_sql_injection_MySQL_size"
 description: "The list is paginated. You can provide a page number (default 0) and\
   \ a page size (default 100)"
 type: "SUITE"
-endpoint: "/example/v1/hotels?page=I6C5Oq"
+endpoint: "/example/v1/hotels?size={{@MySQLSQLInjections}}"
 method: "GET"
 auth: "Default"
 headers:
@@ -12,7 +12,7 @@ headers:
 - "Content-Type: application/json"
 testCases: []
 assertions:
-- "@StatusCode != 200"
+- "@ResponseTime < 7000"
 - "@StatusCode != 401"
 - "@StatusCode != 404"
 - "@StatusCode != 500"
@@ -20,7 +20,15 @@ tags:
 - "V1"
 authors:
 - "FX Bot"
-category: "Negative"
+category: "SQL_Injection"
 severity: "Critical"
 inactive: false
-policies: null
+policies:
+  initExec: "Request"
+  cleanupExec: "Request"
+  logger: "DEBUG"
+  timeoutSeconds: 300
+  repeatOnFailure: 0
+  repeat: 0
+  repeatModule: "@MySQLSQLInjections"
+  repeatDelay: 0
