@@ -2,23 +2,6 @@
 genPolicy: "Create"
 openAPISpec: "http://18.144.38.115:8090/v2/api-docs"
 generators:
-- type: "ddos"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  severity: "Critical"
-  database: null
-  inactive: true
-  autoCodeGeneratorMatches: null
-- type: "anonymous_invalid"
-  assertions:
-  - "@StatusCode != 200"
-  severity: "Critical"
-  database: null
-  inactive: true
-  autoCodeGeneratorMatches: null
 - type: "log_Forging"
   assertions:
   - "@StatusCode != 200"
@@ -28,14 +11,59 @@ generators:
   severity: "Critical"
   database: null
   inactive: true
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "auth_invalid"
   assertions:
   - "@StatusCode != 200"
   severity: "Critical"
   database: null
   inactive: false
-  autoCodeGeneratorMatches: null
+  matches: []
+- type: "ddos"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: true
+  matches:
+  - name: "pageSize, page_size, maxResults, max_results"
+    value: null
+    methods: null
+    denyRoles: null
+    pathPatterns: null
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+- type: "anonymous_invalid"
+  assertions:
+  - "@StatusCode != 200"
+  severity: "Critical"
+  database: null
+  inactive: true
+  matches: []
+- type: "invalid_datatype"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: false
+  matches: []
+- type: "XSS_Injection"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: false
+  matches: []
 - type: "special_chars "
   assertions:
   - "@StatusCode != 200"
@@ -45,7 +73,7 @@ generators:
   severity: "Critical"
   database: null
   inactive: false
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "null_value"
   assertions:
   - "@StatusCode != 200"
@@ -55,7 +83,7 @@ generators:
   severity: "Critical"
   database: null
   inactive: false
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "empty_value"
   assertions:
   - "@StatusCode != 200"
@@ -65,7 +93,7 @@ generators:
   severity: "Critical"
   database: null
   inactive: false
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "sql_injection"
   assertions:
   - "@ResponseTime < 7000"
@@ -77,7 +105,7 @@ generators:
     name: "MySQL"
     version: "5.7"
   inactive: false
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "create"
   assertions:
   - "@StatusCode != 200"
@@ -87,31 +115,43 @@ generators:
   severity: "Critical"
   database: null
   inactive: true
-  autoCodeGeneratorMatches: null
+  matches: []
 - type: "rbac"
   assertions:
   - "@StatusCode == 403"
   severity: "Critical"
   database: null
   inactive: true
-  autoCodeGeneratorMatches: null
-- type: "invalid_datatype"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  severity: "Critical"
-  database: null
-  inactive: false
-  autoCodeGeneratorMatches: null
-- type: "XSS_Injection"
-  assertions:
-  - "@StatusCode != 200"
-  - "@StatusCode != 401"
-  - "@StatusCode != 404"
-  - "@StatusCode != 500"
-  severity: "Critical"
-  database: null
-  inactive: false
-  autoCodeGeneratorMatches: null
+  matches:
+  - name: "Admin access"
+    value: null
+    methods: "Post, Put, Delete"
+    denyRoles: "Writer, Reader"
+    pathPatterns: "/api/v1/orgs/**, /api/v1/accounts/**"
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  - name: "Writer access"
+    value: null
+    methods: "Post, Put, Delete"
+    denyRoles: "Reader"
+    pathPatterns: "/api/v1/projects/**, /api/v1/regions/**"
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  - name: "Collaborator access"
+    value: null
+    methods: "Post, Delete"
+    denyRoles: "Collaborator"
+    pathPatterns: "/api/v1/projects/**"
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+  - name: "Reader access"
+    value: null
+    methods: "Get, Post, Put, Delete"
+    denyRoles: "Other"
+    pathPatterns: "/api/v1/**"
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
