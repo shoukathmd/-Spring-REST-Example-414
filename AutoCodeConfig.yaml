@@ -155,3 +155,50 @@ generators:
     resourceSamples: null
     queryParams: null
     bodyProperties: null
+- type: "no_params"
+  assertions:
+  - "@StatusCode == 200"
+  severity: "Major"
+  database: null
+  inactive: false
+  matches: null
+- type: "DDOS"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: false
+  matches:
+  - name: "pageSize, page_size, maxResults, max_results"
+    value: null
+    methods: null
+    denyRoles: null
+    pathPatterns: null
+    resourceSamples: null
+    queryParams: null
+    bodyProperties: null
+- type: "sql_injection_timebound"
+  assertions:
+  - "@ResponseTime < 7000"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database:
+    name: "MySQL"
+    version: "5.7"
+  inactive: false
+  matches: []
+- type: "negative_number"
+  assertions:
+  - "@StatusCode != 200"
+  - "@StatusCode != 401"
+  - "@StatusCode != 404"
+  - "@StatusCode != 500"
+  severity: "Critical"
+  database: null
+  inactive: false
+  matches: null
