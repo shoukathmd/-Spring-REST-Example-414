@@ -161,7 +161,7 @@ generators:
   severity: "Major"
   database: null
   inactive: false
-  matches: null
+  matches: []
 - type: "DDOS"
   assertions:
   - "@StatusCode != 200"
@@ -201,4 +201,4 @@ generators:
   severity: "Critical"
   database: null
   inactive: false
-  matches: null
+  matches: []
