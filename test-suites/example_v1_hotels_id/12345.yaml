@@ -1,7 +1,7 @@
 ---
 parent: "example_v1_hotels_id"
 name: "12345"
-description: "You have to provide a valid hotel ID."
+description: "You have to provide a valid hotel ID4569."
 type: "SUITE"
 endpoint: "/example/v1/hotels/{id}"
 method: "GET"
