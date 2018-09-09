@@ -1,25 +1,24 @@
 ---
 parent: "example_v1_hotels"
-name: "ExampleV1HotelsGetQueryParamDdosPage"
+name: "ExampleV1HotelsGetAnonymousInvalid"
 description: "The list is paginated. You can provide a page number (default 0) and\
   \ a page size (default 100)"
 authors:
 - "FX Bot"
 type: "SUITE"
 init: []
-endpoint: "/example/v1/hotels?page=1001"
+endpoint: "/example/v1/hotels"
 method: "GET"
-auth: "Default"
+auth: "Anonymous"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"
 testCases: []
 assertions:
-- "@StatusCode != 401"
-- "@StatusCode != 404"
+- "@StatusCode != 200"
 cleanup: []
 severity: "Critical"
-category: "DDOS"
+category: "UnSecured"
 tags:
 - "V1"
 inactive: false

@@ -1,15 +1,14 @@
 ---
 parent: "example_v1_hotels_id"
-name: "ExampleV1HotelsIdDeleteAuthInvalid"
-description: "You have to provide a valid hotel ID in the URL. Once deleted the resource\
-  \ can not be recovered."
+name: "ExampleV1HotelsIdGetAnonymousInvalid"
+description: "You have to provide a valid hotel ID."
 authors:
 - "FX Bot"
 type: "SUITE"
 init: []
 endpoint: "/example/v1/hotels/{{@Random}}"
-method: "DELETE"
-auth: "INVALID_AUTH"
+method: "GET"
+auth: "Anonymous"
 headers:
 - "Accept: application/json"
 - "Content-Type: application/json"

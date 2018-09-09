@@ -1,12 +1,12 @@
 ---
-parent: "example_v1_hotels_id"
-name: "ExampleV1HotelsIdGetPathParamNullValueId"
+parent: "example_v1_hotels_@random"
+name: "ExampleV1Hotels@randomGetSla"
 description: "You have to provide a valid hotel ID."
 authors:
 - "FX Bot"
 type: "SUITE"
 init: []
-endpoint: "/example/v1/hotels/null"
+endpoint: "/example/v1/hotels/{{@Random}}"
 method: "GET"
 auth: "Default"
 headers:
@@ -14,13 +14,12 @@ headers:
 - "Content-Type: application/json"
 testCases: []
 assertions:
-- "@StatusCode != 200"
-- "@StatusCode != 401"
+- "@StatusCode == 200"
 - "@StatusCode != 404"
-- "@StatusCode != 500"
+- "@ResponseTime <= 1000"
 cleanup: []
-severity: "Critical"
-category: "Negative"
+severity: "Major"
+category: "SLA"
 tags:
 - "V1"
 inactive: false
