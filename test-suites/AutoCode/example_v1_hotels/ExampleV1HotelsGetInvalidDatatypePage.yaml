@@ -7,7 +7,7 @@ authors:
 - "FX Bot"
 type: "SUITE"
 init: []
-endpoint: "/example/v1/hotels?page=aXgAIH"
+endpoint: "/example/v1/hotels?page=j4BKM9"
 method: "GET"
 auth: "Default"
 headers:
